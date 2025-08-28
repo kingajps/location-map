@@ -1,0 +1,653 @@
+<img src="locations.jpg" alt="Locations" usemap="#locmap">
+
+<map name="locmap">
+  <area shape="rect" coords="170,567,462,698" href="#" onclick="showInfo('office')">
+  <area shape="rect" coords="75,60,174,142" href="#" onclick="showInfo('zonea')">
+  <area shape="rect" coords="74,144,114,664" href="#" onclick="showInfo('rack1')">
+  <area shape="rect" coords="174,57,460,95" href="#" onclick="showInfo('rack2')">
+  <area shape="rect" coords="436,98,462,234" href="#" onclick="showInfo('rack3')">
+  <area shape="rect" coords="435,457,460,566" href="#" onclick="showInfo('m1')">
+  <area shape="rect" coords="362,455,377,567" href="#" onclick="showInfo('m2')">
+  <area shape="rect" coords="341,455,358,567" href="#" onclick="showInfo('m3')">
+  <area shape="rect" coords="261,455,274,569" href="#" onclick="showInfo('m4')">
+  <area shape="rect" coords="239,454,260,567" href="#" onclick="showInfo('m5')">
+  <area shape="rect" coords="171,482,187,564" href="#" onclick="showInfo('m6')">
+  <area shape="rect" coords="170,455,240,467" href="#" onclick="showInfo('m7')">
+  <area shape="rect" coords="342,417,460,428" href="#" onclick="showInfo('m8')">
+  <area shape="rect" coords="341,404,461,416" href="#" onclick="showInfo('m9')">
+  <area shape="rect" coords="443,320,460,403" href="#" onclick="showInfo('m10')">
+  <area shape="rect" coords="338,322,440,343" href="#" onclick="showInfo('m11')">
+  <area shape="rect" coords="227,285,246,413" href="#" onclick="showInfo('m12')">
+  <area shape="rect" coords="118,616,170,662" href="#" onclick="showInfo('for11')">
+  <area shape="rect" coords="115,569,169,614" href="#" onclick="showInfo('for12')">
+  <area shape="rect" coords="114,524,168,567" href="#" onclick="showInfo('for13')">
+  <area shape="rect" coords="117,473,169,519" href="#" onclick="showInfo('for14')">
+  <area shape="rect" coords="117,428,171,472" href="#" onclick="showInfo('for15')">
+  <area shape="rect" coords="116,379,170,424" href="#" onclick="showInfo('for16')">
+  <area shape="rect" coords="114,333,168,378" href="#" onclick="showInfo('for17')">
+  <area shape="rect" coords="116,284,168,331" href="#" onclick="showInfo('for18')">
+  <area shape="rect" coords="115,238,169,282" href="#" onclick="showInfo('for19')">
+  <area shape="rect" coords="116,193,169,236" href="#" onclick="showInfo('for110')">
+  <area shape="rect" coords="116,143,167,190" href="#" onclick="showInfo('for111')">
+  <area shape="rect" coords="175,96,240,143" href="#" onclick="showInfo('for21')">
+  <area shape="rect" coords="243,98,304,141" href="#" onclick="showInfo('for22')">
+  <area shape="rect" coords="308,96,370,142" href="#" onclick="showInfo('for23')">
+  <area shape="rect" coords="369,97,432,143" href="#" onclick="showInfo('for24')">
+  <area shape="rect" coords="368,143,434,180" href="#" onclick="showInfo('for31')">
+  <area shape="rect" coords="370,179,434,216" href="#" onclick="showInfo('for32')">
+  <area shape="rect" coords="371,283,434,320" href="#" onclick="showInfo('for33')">
+  <area shape="rect" coords="600,568,819,698" href="#" onclick="showInfo('zoneb')">
+  <area shape="rect" coords="822,568,984,699" href="#" onclick="showInfo('zonec')">
+  <area shape="rect" coords="600,60,643,569" href="#" onclick="showInfo('rack1a')">
+  <area shape="rect" coords="645,57,956,95" href="#" onclick="showInfo('rack2a')">
+  <area shape="rect" coords="943,143,984,512" href="#" onclick="showInfo('rack3a')">
+  <area shape="rect" coords="644,511,785,567" href="#" onclick="showInfo('for11a')">
+  <area shape="rect" coords="643,455,784,509" href="#" onclick="showInfo('for12a')">
+  <area shape="rect" coords="643,398,783,453" href="#" onclick="showInfo('for13a')">
+  <area shape="rect" coords="642,341,784,396" href="#" onclick="showInfo('for14a')">
+  <area shape="rect" coords="642,284,783,341" href="#" onclick="showInfo('for15a')">
+  <area shape="rect" coords="643,226,784,283" href="#" onclick="showInfo('for16a')">
+  <area shape="rect" coords="643,181,783,225" href="#" onclick="showInfo('for17a')">
+  <area shape="rect" coords="642,142,785,179" href="#" onclick="showInfo('for18a')">
+  <area shape="rect" coords="643,96,718,141" href="#" onclick="showInfo('for21a')">
+  <area shape="rect" coords="719,97,783,141" href="#" onclick="showInfo('for22a')">
+  <area shape="rect" coords="786,98,867,142" href="#" onclick="showInfo('for23a')">
+  <area shape="rect" coords="869,96,954,142" href="#" onclick="showInfo('for24a')">
+  <area shape="rect" coords="786,502,946,567" href="#" onclick="showInfo('for31a')">
+  <area shape="rect" coords="786,443,943,502" href="#" onclick="showInfo('for32a')">
+  <area shape="rect" coords="784,382,943,441" href="#" onclick="showInfo('for33a')">
+  <area shape="rect" coords="784,323,943,382" href="#" onclick="showInfo('for34a')">
+  <area shape="rect" coords="783,262,943,321" href="#" onclick="showInfo('for35a')">
+  <area shape="rect" coords="785,202,943,260" href="#" onclick="showInfo('for36a')">
+  <area shape="rect" coords="786,144,943,202" href="#" onclick="showInfo('for37a')">
+  <area shape="rect" coords="224,28,289,50" href="#" onclick="showInfo('unit32')">
+  <area shape="rect" coords="760,26,831,51" href="#" onclick="showInfo('unit30')">
+</map>
+
+
+<div id="inventory" style="position: absolute; top: 50px; right: 20px; width: 300px; background: #f4f4f4; padding: 15px; border: 1px solid #ccc;">
+  <h3>Inventory Info</h3>
+  <div id="inventory-content">Click a zone to see details.</div>
+
+<script>
+
+function showInfo(label) {
+  const messages = {
+    'office': [
+      'the combined inventory of unit 32 to unit 30 includes:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'zonea': [
+      'zone a is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'zoneb': [
+      'zone b is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'zonec': [
+      'zone c is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'rack1': [
+      'rack 1 contains:',
+      '- bay 1 level 1: abc',
+      '- bay 1 level 2: xyz',
+      '- bay 2 level 1: def',
+      '- bay 2 level 2: ghi'
+    ],
+    'rack2': [
+      'rack 2 contains:',
+      '- bay 1 level 1: abc',
+      '- bay 1 level 2: xyz',
+      '- bay 2 level 1: def',
+      '- bay 2 level 2: ghi'
+    ],
+    'rack3': [
+      'rack 3 contains:',
+      '- bay 1 level 1: abc',
+      '- bay 1 level 2: xyz',
+      '- bay 2 level 1: def',
+      '- bay 2 level 2: ghi'
+    ],
+    'rack1a': [
+      'rack 1a contains:',
+      '- bay 1 level 1: abc',
+      '- bay 1 level 2: xyz',
+      '- bay 2 level 1: def',
+      '- bay 2 level 2: ghi'
+    ],
+    'rack2a': [
+      'rack 2a contains:',
+      '- bay 1 level 1: abc',
+      '- bay 1 level 2: xyz',
+      '- bay 2 level 1: def',
+      '- bay 2 level 2: ghi'
+    ],
+    'rack3a': [
+      'rack 3a contains:',
+      '- bay 1 level 1: abc',
+      '- bay 1 level 2: xyz',
+      '- bay 2 level 1: def',
+      '- bay 2 level 2: ghi'
+    ],
+    'm1': [
+      'm1 contains:',
+      '- bay 1 level 1: abc',
+      '- bay 1 level 2: xyz',
+      '- bay 2 level 1: def',
+      '- bay 2 level 2: ghi'
+    ],
+    'm2': [
+      'm2 contains:',
+      '- bay 1 level 1: abc',
+      '- bay 1 level 2: xyz',
+      '- bay 2 level 1: def',
+      '- bay 2 level 2: ghi'
+    ],
+    'm3': [
+      'm3 contains:',
+      '- bay 1 level 1: abc',
+      '- bay 1 level 2: xyz',
+      '- bay 2 level 1: def',
+      '- bay 2 level 2: ghi'
+    ],
+    'm4': [
+      'm4 contains:',
+      '- bay 1 level 1: abc',
+      '- bay 1 level 2: xyz',
+      '- bay 2 level 1: def',
+      '- bay 2 level 2: ghi'
+    ],
+    'm5': [
+      'm5 contains:',
+      '- bay 1 level 1: abc',
+      '- bay 1 level 2: xyz',
+      '- bay 2 level 1: def',
+      '- bay 2 level 2: ghi'
+    ],
+    'm6': [
+      'm6 contains:',
+      '- bay 1 level 1: abc',
+      '- bay 1 level 2: xyz',
+      '- bay 2 level 1: def',
+      '- bay 2 level 2: ghi'
+    ],
+    'm7': [
+      'm7 contains:',
+      '- bay 1 level 1: abc',
+      '- bay 1 level 2: xyz',
+      '- bay 2 level 1: def',
+      '- bay 2 level 2: ghi'
+    ],
+    'm8': [
+      'm8 contains:',
+      '- bay 1 level 1: abc',
+      '- bay 1 level 2: xyz',
+      '- bay 2 level 1: def',
+      '- bay 2 level 2: ghi'
+    ],
+    'm9': [
+      'm9 contains:',
+      '- bay 1 level 1: abc',
+      '- bay 1 level 2: xyz',
+      '- bay 2 level 1: def',
+      '- bay 2 level 2: ghi'
+    ],
+    'm10': [
+      'm10 contains:',
+      '- bay 1 level 1: abc',
+      '- bay 1 level 2: xyz',
+      '- bay 2 level 1: def',
+      '- bay 2 level 2: ghi'
+    ],
+    'm11': [
+      'm11 contains:',
+      '- bay 1 level 1: abc',
+      '- bay 1 level 2: xyz',
+      '- bay 2 level 1: def',
+      '- bay 2 level 2: ghi'
+    ],
+    'm12': [
+      'm12 contains:',
+      '- bay 1 level 1: abc',
+      '- bay 1 level 2: xyz',
+      '- bay 2 level 1: def',
+      '- bay 2 level 2: ghi'
+    ],
+    'for11': [
+      'FoR 1.1 is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'for12': [
+      'FoR 1.2 is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'for13': [
+      'FoR 1.3 is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'for14': [
+      'FoR 1.4 is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'for15': [
+      'FoR 1.5 is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'for16': [
+      'FoR 1.6 is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'for17': [
+      'FoR 1.7 is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'for18': [
+      'FoR 1.8 is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'for19': [
+      'FoR 1.9 is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'for110': [
+      'FoR 1.10 is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'for111': [
+      'FoR 1.11 is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'for21': [
+      'FoR 2.1 is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'for22': [
+      'FoR 2.2 is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+   'for23': [
+      'FoR 2.3 is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'for24': [
+      'FoR 2.4 is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'for31': [
+      'FoR 3.1 is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'for32': [
+      'FoR 3.2 is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+   'for33': [
+      'FoR 3.3 is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'for11a': [
+      'FoR 1.1a is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'for12a': [
+      'FoR 1.2a is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'for13a': [
+      'FoR 1.3a is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'for14a': [
+      'FoR 1.4a is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'for15a': [
+      'FoR 1.5a is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'for16a': [
+      'FoR 1.6a is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'for17a': [
+      'FoR 1.7a is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'for18a': [
+      'FoR 1.8a is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'for21a': [
+      'FoR 2.1a is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'for22a': [
+      'FoR 2.2a is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+   'for23a': [
+      'FoR 2.3a is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'for24a': [
+      'FoR 2.4a is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'for31a': [
+      'FoR 3.1a is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'for32a': [
+      'FoR 3.2a is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+   'for33a': [
+      'FoR 3.3a is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'for34a': [
+      'FoR 3.4a is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+    'for35a': [
+      'FoR 3.5a is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+   'for36a': [
+      'FoR 3.6a is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+   'for37a': [
+      'FoR 3.7a is floor storage containing:',
+      '- a',
+      '- b',
+      '- c',
+      '- etc.'
+    ],
+   'unit32': [
+      'unit 32 is the main operations hub.',
+    ],
+   'unit30': [
+      'unit 30 is the secondary storage facility.',
+    ],
+    };
+
+const capacity = {
+  'zonea': ['capacity status:', '- mostly full'],
+  'zoneb': ['capacity status:', '- 50% left'],
+  'zonec': ['capacity status:', '- empty'],
+  'rack1': ['capacity status:', '- bay 1 level 1: full', '- bay 1 level 2: 50% left', '- bay 2 level 1: empty', '- bay 2 level 2: 25% left'],
+  'rack2': ['capacity status:', '- bay 1 level 1: full', '- bay 1 level 2: full', '- bay 2 level 1: 75% left', '- bay 2 level 2: empty'],
+  'rack3': ['capacity status:', '- bay 1 level 1: 25% left', '- bay 1 level 2: full', '- bay 2 level 1: 50% left', '- bay 2 level 2: full'],
+  'rack1a': ['capacity status:', '- bay 1 level 1: full', '- bay 1 level 2: full', '- bay 2 level 1: full', '- bay 2 level 2: full'],
+  'rack2a': ['capacity status:', '- bay 1 level 1: 25% left', '- bay 1 level 2: 25% left', '- bay 2 level 1: 25% left', '- bay 2 level 2: 25% left'],
+  'rack3a': ['capacity status:', '- bay 1 level 1: empty', '- bay 1 level 2: empty', '- bay 2 level 1: empty', '- bay 2 level 2: empty'],
+  'm1': [
+    'capacity status:',
+    '- bay 1 level 1: full',
+    '- bay 1 level 2: 50% left',
+    '- bay 2 level 1: empty',
+    '- bay 2 level 2: 25% left'
+  ],
+  'm2': [
+    'capacity status:',
+    '- bay 1 level 1: full',
+    '- bay 1 level 2: full',
+    '- bay 2 level 1: 75% left',
+    '- bay 2 level 2: empty'
+  ],
+  'm3': [
+    'capacity status:',
+    '- bay 1 level 1: 25% left',
+    '- bay 1 level 2: full',
+    '- bay 2 level 1: 50% left',
+    '- bay 2 level 2: full'
+  ],
+  'm4': [
+    'capacity status:',
+    '- bay 1 level 1: full',
+    '- bay 1 level 2: full',
+    '- bay 2 level 1: full',
+    '- bay 2 level 2: full'
+  ],
+  'm5': [
+    'capacity status:',
+    '- bay 1 level 1: 25% left',
+    '- bay 1 level 2: 25% left',
+    '- bay 2 level 1: 25% left',
+    '- bay 2 level 2: 25% left'
+  ],
+  'm6': [
+    'capacity status:',
+    '- bay 1 level 1: empty',
+    '- bay 1 level 2: empty',
+    '- bay 2 level 1: empty',
+    '- bay 2 level 2: empty'
+  ],
+  'm7': [
+    'capacity status:',
+    '- bay 1 level 1: full',
+    '- bay 1 level 2: 50% left',
+    '- bay 2 level 1: empty',
+    '- bay 2 level 2: 25% left'
+  ],
+  'm8': [
+    'capacity status:',
+    '- bay 1 level 1: full',
+    '- bay 1 level 2: full',
+    '- bay 2 level 1: 75% left',
+    '- bay 2 level 2: empty'
+  ],
+  'm9': [
+    'capacity status:',
+    '- bay 1 level 1: 25% left',
+    '- bay 1 level 2: full',
+    '- bay 2 level 1: 50% left',
+    '- bay 2 level 2: full'
+  ],
+  'm10': [
+    'capacity status:',
+    '- bay 1 level 1: full',
+    '- bay 1 level 2: full',
+    '- bay 2 level 1: full',
+    '- bay 2 level 2: full'
+  ],
+  'm11': [
+    'capacity status:',
+    '- bay 1 level 1: 25% left',
+    '- bay 1 level 2: 25% left',
+    '- bay 2 level 1: 25% left',
+    '- bay 2 level 2: 25% left'
+  ],
+  'm12': [
+    'capacity status:',
+    '- bay 1 level 1: empty',
+    '- bay 1 level 2: empty',
+    '- bay 2 level 1: empty',
+    '- bay 2 level 2: empty'
+  ],
+  'for11': ['capacity status:', '- 75% full'],
+  'for12': ['capacity status:', '- 50% full'],
+  'for13': ['capacity status:', '- 25% full'],
+  'for14': ['capacity status:', '- empty'],
+  'for15': ['capacity status:', '- full'],
+  'for16': ['capacity status:', '- full'],
+  'for17': ['capacity status:', '- full'],
+  'for18': ['capacity status:', '- full'],
+  'for19': ['capacity status:', '- full'],
+  'for110': ['capacity status:', '- full'],
+  'for111': ['capacity status:', '- full'],
+  'for21': ['capacity status:', '- full'],
+  'for22': ['capacity status:', '- full'],
+  'for23': ['capacity status:', '- full'],
+  'for24': ['capacity status:', '- full'],
+  'for31': ['capacity status:', '- full'],
+  'for32': ['capacity status:', '- full'],
+  'for33': ['capacity status:', '- full'],
+  'for11a': ['capacity status:', '- full'],
+  'for12a': ['capacity status:', '- full'],
+  'for13a': ['capacity status:', '- full'],
+  'for14a': ['capacity status:', '- full'],
+  'for15a': ['capacity status:', '- full'],
+  'for16a': ['capacity status:', '- full'],
+  'for17a': ['capacity status:', '- full'],
+  'for18a': ['capacity status:', '- full'],
+  'for21a': ['capacity status:', '- full'],
+  'for22a': ['capacity status:', '- full'],
+  'for23a': ['capacity status:', '- full'],
+  'for24a': ['capacity status:', '- full'],
+  'for31a': ['capacity status:', '- full'],
+  'for32a': ['capacity status:', '- full'],
+  'for33a': ['capacity status:', '- full'],
+  'for34a': ['capacity status:', '- full'],
+  'for35a': ['capacity status:', '- full'],
+  'for36a': ['capacity status:', '- full'],
+  'for37a': ['capacity status:', '- full'],
+  'unit32': ['capacity status:', '- full'],
+  'unit30': ['capacity status:', '- 75% full']
+};
+
+  const inventory = messages[label];
+  const cap = capacity[label];
+  const container = document.getElementById('inventory-content');
+
+  if (Array.isArray(inventory) && Array.isArray(cap)) {
+    container.innerHTML = `
+      <div style="display: flex; gap: 20px;">
+        <div>
+          <h4>inventory</h4>
+          ${inventory.map(item => `<p>${item}</p>`).join('')}
+        </div>
+        <div>
+          <h4>capacity</h4>
+          ${cap.map(item => `<p>${item}</p>`).join('')}
+        </div>
+      </div>
+    `;
+  } else {
+    container.innerHTML = '<p>no information available for this area.</p>';
+  }
+}
+</script>
