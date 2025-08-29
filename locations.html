@@ -1,6 +1,9 @@
+<h1>Warehouse Map</h1>
+
+<div id="map-container">
 <img src="locations.jpg" alt="Locations" usemap="#locmap">
 
-<map name="locmap">
+  <map name="locmap">
   <area shape="rect" coords="170,567,462,698" href="#" onclick="showInfo('office')">
   <area shape="rect" coords="75,60,174,142" href="#" onclick="showInfo('zonea')">
   <area shape="rect" coords="74,144,114,664" href="#" onclick="showInfo('rack1')">
@@ -62,12 +65,72 @@
   <area shape="rect" coords="786,144,943,202" href="#" onclick="showInfo('for37a')">
   <area shape="rect" coords="224,28,289,50" href="#" onclick="showInfo('unit32')">
   <area shape="rect" coords="760,26,831,51" href="#" onclick="showInfo('unit30')">
-</map>
+  </map>
+</div>
 
-
-<div id="inventory" style="position: absolute; top: 50px; right: 20px; width: 300px; background: #f4f4f4; padding: 15px; border: 1px solid #ccc;">
+<div id="inventory">
   <h3>Inventory Info</h3>
   <div id="inventory-content">Click a zone to see details.</div>
+
+<style>
+  body {
+  font-family: 'inter', sans-serif;
+  background-color: #f9f9f9;
+  padding: 40px;
+  text-align: center;
+  color: #444;
+}
+
+h1 {
+  font-size: 24px;
+  text-transform: lowercase;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+#map-container img {
+  display: block;
+  margin: 0 auto;
+}
+
+#inventory {
+  position: absolute;
+  top: 50px;
+  right: 20px;
+  width: 300px;
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+  #inventory-content p {
+    margin: 4px 0;
+    font-size: 14px;
+    color: #555;
+  }
+
+  h3, h4 {
+    text-transform: lowercase;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 600px) {
+    #inventory {
+      position: static;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    #map-container img {
+      width: 100%;
+      height: auto;
+    }
+  }
+</style>
 
 <script>
 
