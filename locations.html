@@ -1,14 +1,16 @@
 <h1>Warehouse Map</h1>
 
 <div id="map-container">
-<img src="locations.jpg" alt="Locations" usemap="#locmap">
+  <div id="image-wrapper" style="position: relative; display: inline-block;">
+  <img src="locations.jpg" alt="Locations" usemap="#locmap">
+  <div id="highlight-box" style="position: absolute; border: 2px solid red; display: none;"></div>
 
   <map name="locmap">
-  <area shape="rect" coords="170,567,462,698" href="#" onclick="showInfo('office')">
+  <area shape="rect" coords="170,567,459,699" href="#" onclick="showInfo('office')">
   <area shape="rect" coords="75,60,174,142" href="#" onclick="showInfo('zonea')">
   <area shape="rect" coords="74,144,114,664" href="#" onclick="showInfo('rack1')">
   <area shape="rect" coords="174,57,460,95" href="#" onclick="showInfo('rack2')">
-  <area shape="rect" coords="436,98,462,234" href="#" onclick="showInfo('rack3')">
+  <area shape="rect" coords="436,98,459,320" href="#" onclick="showInfo('rack3')">
   <area shape="rect" coords="435,457,460,566" href="#" onclick="showInfo('m1')">
   <area shape="rect" coords="362,455,377,567" href="#" onclick="showInfo('m2')">
   <area shape="rect" coords="341,455,358,567" href="#" onclick="showInfo('m3')">
@@ -129,12 +131,85 @@ h1 {
       width: 100%;
       height: auto;
     }
+
+#highlight-box {
+  z-index: 10;
+  pointer-events: none;
+}
+
   }
 </style>
 
 <script>
 
 function showInfo(label) {
+
+const areas = {
+  'office': '170,567,459,699',
+  'zonea': '75,60,174,142',
+  'rack1': '74,144,114,664',
+  'rack2': '174,57,460,95',
+    'rack3': '436,98,459,320',
+    'm1': '435,457,460,566',
+    'm2': '362,455,377,567',
+    'm3': '341,455,358,567',
+    'm4': '261,455,274,569',
+    'm5': '239,454,260,567',
+    'm6': '171,482,187,564',
+    'm7': '170,455,240,467',
+    'm8': '342,417,460,428',
+    'm9': '341,404,461,416',
+    'm10': '443,320,460,403',
+    'm11': '338,322,440,343',
+    'm12': '227,285,246,413',
+    'for11': '118,616,170,662',
+    'for12': '115,569,169,614',
+    'for13': '114,524,168,567',
+    'for14': '117,473,169,519',
+    'for15': '117,428,171,472',
+    'for16': '116,379,170,424',
+    'for17': '114,333,168,378',
+    'for18': '116,284,168,331',
+    'for19': '115,238,169,282',
+    'for110': '116,193,169,236',
+    'for111': '116,143,167,190',
+    'for21': '175,96,240,143',
+    'for22': '243,98,304,141',
+    'for23': '308,96,370,142',
+    'for24': '369,97,432,143',
+    'for31': '368,143,434,180',
+    'for32': '370,179,434,216',
+    'for33': '371,283,434,320',
+    'zoneb': '600,568,819,698',
+    'zonec': '822,568,984,699',
+    'rack1a': '600,60,643,569',
+    'rack2a': '645,57,956,95',
+    'rack3a': '943,143,984,512',
+    'for11a': '644,511,785,567',
+    'for12a': '643,455,784,509',
+    'for13a': '643,398,783,453',
+    'for14a': '642,341,784,396',
+    'for15a': '642,284,783,341',
+    'for16a': '643,226,784,283',
+    'for17a': '643,181,783,225',
+    'for18a': '642,142,785,179',
+    'for21a': '643,96,718,141',
+    'for22a': '719,97,783,141',
+    'for23a': '786,98,867,142',
+    'for24a': '869,96,954,142',
+    'for31a': '786,502,946,567',
+    'for32a': '786,443,943,502',
+    'for33a': '784,382,943,441',
+    'for34a': '784,323,943,382',
+    'for35a': '783,262,943,321',
+    'for36a': '785,202,943,260',
+    'for37a': '786,144,943,202',
+    'unit32': '224,28,289,50',
+    'unit30': '760,26,831,51'
+    };
+
+highlightArea(areas[label]);
+
   const messages = {
     'office': [
       'the combined inventory of unit 32 to unit 30 includes:',
@@ -558,6 +633,7 @@ function showInfo(label) {
     };
 
 const capacity = {
+  'office': ['capacity status:', '- unit 32: full', '-unit 30: 75% full'],
   'zonea': ['capacity status:', '- mostly full'],
   'zoneb': ['capacity status:', '- 50% left'],
   'zonec': ['capacity status:', '- empty'],
@@ -712,5 +788,20 @@ const capacity = {
   } else {
     container.innerHTML = '<p>no information available for this area.</p>';
   }
+
+function highlightArea(coords) {
+  const box = document.getElementById('highlight-box');
+  const parts = coords.split(',').map(Number);
+  const x1 = parts[0];
+  const y1 = parts[1];
+  const x2 = parts[2];
+  const y2 = parts[3];
+
+  box.style.left = x1 + 'px';
+  box.style.top = y1 + 'px';
+  box.style.width = (x2 - x1) + 'px';
+  box.style.height = (y2 - y1) + 'px';
+  box.style.display = 'block';
+}
 }
 </script>
