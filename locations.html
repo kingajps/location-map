@@ -73,6 +73,15 @@
 <div id="inventory">
   <h3>Inventory Info</h3>
   <div id="inventory-content">Click a zone to see details.</div>
+</div>
+
+<div id="popup">
+  <div class="popup-content">
+    <span class="popup-icon">🔔</span>
+    <span class="popup-message"></span>
+    <button class="popup-close" onclick="closePopup()">×</button>
+  </div>
+
 
 <style>
   body {
@@ -137,6 +146,54 @@ h1 {
   pointer-events: none;
 }
 
+#popup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  max-width: 320px;
+  background-color: #ffffff;
+  border-left: 4px solid #4caf50;
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  font-size: 14px;
+  color: #333;
+  display: none;
+  z-index: 1000;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.popup-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.popup-icon {
+  font-size: 18px;
+}
+
+.popup-message {
+  flex: 1;
+}
+
+.popup-close {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #888;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 4px 8px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
   }
 </style>
 
@@ -212,7 +269,7 @@ highlightArea(areas[label]);
 
   const messages = {
     'office': [
-      'the combined inventory of unit 32 to unit 30 includes:',
+      'the combined inventory outside our units includes:',
       '- a',
       '- b',
       '- c',
@@ -633,7 +690,7 @@ highlightArea(areas[label]);
     };
 
 const capacity = {
-  'office': ['capacity status:', '- unit 32: full', '-unit 30: 75% full'],
+  'office': ['Capacity Status:', '- there is no capacity limit outside our units'],
   'zonea': ['capacity status:', '- mostly full'],
   'zoneb': ['capacity status:', '- 50% left'],
   'zonec': ['capacity status:', '- empty'],
@@ -776,11 +833,11 @@ const capacity = {
     container.innerHTML = `
       <div style="display: flex; gap: 20px;">
         <div>
-          <h4>inventory</h4>
+          <h4>Inventory</h4>
           ${inventory.map(item => `<p>${item}</p>`).join('')}
         </div>
         <div>
-          <h4>capacity</h4>
+          <h4>Capacity</h4>
           ${cap.map(item => `<p>${item}</p>`).join('')}
         </div>
       </div>
@@ -804,4 +861,50 @@ function highlightArea(coords) {
   box.style.display = 'block';
 }
 }
+</script>
+
+<div id="popup"></div>
+
+<script>
+  const updates = [
+    "2025-09-02 08:19:37 - M1 Bay 2 Level 2 : New item added to location map: Bluetooth Speaker",
+    "2025-09-02 08:19:47 - Rack 2 Bay 1 Level 3: New item added to location map: Acoustic Guitar",
+    "2025-09-02 08:19:57 - M5 Bay 4 Level 2: New item added to location map: Boss Eau De Toilette",
+    "2025-09-02 08:20:07 - M5 Bay 4 Level 2: New item added to location map: Boss Eau De Toilette",
+    "2025-09-02 08:20:17 - M5 Bay 3 Level 2: New item added to location map: Hydro 5 Blades",
+    "2025-09-02 08:20:27 - Rack 2 Bay 1 Level 3: New item added to location map: Electric Guitar",
+    "2025-09-02 08:20:37 - FoR 1.1A : New item added to location map: Office Equipment",
+    "2025-09-02 08:20:47 - FoR 1.1A : New item added to location map: Office Equipment",
+    "2025-09-02 08:20:57 - Rack 2 Bay 1 Level 3: New item added to location map: Acoustic Guitar",
+    "2025-09-02 08:21:07 - M1 Bay 2 Level 2 : New item added to location map: Bluetooth Speaker"
+  ];
+
+
+let index = 0;
+
+function showUpdate() {
+  if (index < updates.length) {
+    const popup = document.getElementById("popup");
+    const message = document.querySelector(".popup-message");
+
+    message.innerText = updates[index];
+    popup.style.display = "block";
+    popup.style.animation = "fadeIn 0.5s ease-in-out";
+
+    setTimeout(() => {
+      popup.style.display = "none";
+    }, 4000);
+
+    index++;
+    setTimeout(showUpdate, 5000);
+  }
+}
+
+function closePopup() {
+  const popup = document.getElementById("popup");
+  popup.style.display = "none";
+}
+
+window.onload = showUpdate;
+
 </script>
