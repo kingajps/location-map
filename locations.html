@@ -5,6 +5,13 @@
   <img src="locations.jpg" alt="Locations" usemap="#locmap">
   <div id="highlight-box" style="position: absolute; border: 2px solid red; display: none;"></div>
 
+<div id="search-box" style="position: absolute; top: -50px; left: -380px; width: 300px; background: #ffffff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border: 1px solid #ddd; text-align: left;">
+  <h3>search inventory</h3>
+  <input type="text" id="search-input" placeholder="enter item name" style="width: 100%; padding: 8px; margin-bottom: 10px;">
+  <button onclick="searchItem()" style="padding: 8px 12px;">search</button>
+  <div id="search-result" style="margin-top: 10px; font-size: 14px; color: #555;"></div>
+</div>
+
   <map name="locmap">
   <area shape="rect" coords="170,567,459,699" href="#" onclick="showInfo('office')">
   <area shape="rect" coords="75,60,174,142" href="#" onclick="showInfo('zonea')">
@@ -75,13 +82,17 @@
   <div id="inventory-content">Click a zone to see details.</div>
 </div>
 
+<div id="nonempty-info">
+  <h3>Capacity Updates</h3>
+  <div id="nonempty-content">loading...</div>
+</div>
+
 <div id="popup">
   <div class="popup-content">
     <span class="popup-icon">🔔</span>
     <span class="popup-message"></span>
     <button class="popup-close" onclick="closePopup()">×</button>
   </div>
-
 
 <style>
   body {
@@ -146,13 +157,26 @@ h1 {
   pointer-events: none;
 }
 
+#nonempty-info {
+  position: absolute;
+  top: 300px;
+  right: 20px;
+  width: 300px;
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
 #popup {
   position: fixed;
   bottom: 20px;
   right: 20px;
   max-width: 320px;
   background-color: #ffffff;
-  border-left: 4px solid #4caf50;
+  border: 2px solid #4caf50; 
   padding: 12px 16px;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
@@ -691,7 +715,7 @@ highlightArea(areas[label]);
 
 const capacity = {
   'office': ['Capacity Status:', '- there is no capacity limit outside our units'],
-  'zonea': ['capacity status:', '- mostly full'],
+  'zonea': ['capacity status:', '- 25% left'],
   'zoneb': ['capacity status:', '- 50% left'],
   'zonec': ['capacity status:', '- empty'],
   'rack1': ['capacity status:', '- bay 1 level 1: full', '- bay 1 level 2: 50% left', '- bay 2 level 1: empty', '- bay 2 level 2: 25% left'],
@@ -784,9 +808,9 @@ const capacity = {
     '- bay 2 level 1: empty',
     '- bay 2 level 2: empty'
   ],
-  'for11': ['capacity status:', '- 75% full'],
-  'for12': ['capacity status:', '- 50% full'],
-  'for13': ['capacity status:', '- 25% full'],
+  'for11': ['capacity status:', '- 75% left'],
+  'for12': ['capacity status:', '- 50% left'],
+  'for13': ['capacity status:', '- 25% left'],
   'for14': ['capacity status:', '- empty'],
   'for15': ['capacity status:', '- full'],
   'for16': ['capacity status:', '- full'],
@@ -822,8 +846,30 @@ const capacity = {
   'for36a': ['capacity status:', '- full'],
   'for37a': ['capacity status:', '- full'],
   'unit32': ['capacity status:', '- full'],
-  'unit30': ['capacity status:', '- 75% full']
+  'unit30': ['capacity status:', '- 75% left']
 };
+
+function updateNonEmptyBox() {
+  const container = document.getElementById("nonempty-content");
+  const nonEmpty = [];
+
+  for (const location in capacity) {
+    const entries = capacity[location];
+    for (let i = 1; i < entries.length; i++) {
+      const entry = entries[i].toLowerCase();
+      if (
+        entry.includes("empty") ||
+        entry.includes("25% left") ||
+        entry.includes("50% left") ||
+        entry.includes("75% left")
+      ) {
+        nonEmpty.push(`${location} ${entries[i]}`);
+      }
+    }
+  }
+
+  container.innerHTML = nonEmpty.map(item => `<p>${item}</p>`).join('');
+}
 
   const inventory = messages[label];
   const cap = capacity[label];
@@ -846,6 +892,20 @@ const capacity = {
     container.innerHTML = '<p>no information available for this area.</p>';
   }
 
+function updateNonEmptyBox() {
+  const container = document.getElementById("nonempty-content");
+  const nonEmpty = [];
+  for (const location in capacity) {
+    const entries = capacity[location];
+    for (let i = 1; i < entries.length; i++) {
+      if (!entries[i].includes("empty")) {
+        nonEmpty.push(`${location} ${entries[i]}`);
+      }
+    }
+  }
+  container.innerHTML = nonEmpty.map(item => `<p>${item}</p>`).join('');
+}
+
 function highlightArea(coords) {
   const box = document.getElementById('highlight-box');
   const parts = coords.split(',').map(Number);
@@ -860,6 +920,27 @@ function highlightArea(coords) {
   box.style.height = (y2 - y1) + 'px';
   box.style.display = 'block';
 }
+}
+</script>
+
+<script>
+const itemLocations = {
+  "bluetooth speaker": "m1 bay 2 level 2",
+  "acoustic guitar": "rack 2 bay 1 level 3",
+  "boss eau de toilette": "m5 bay 4 level 2",
+  "hydro 5 blades": "m5 bay 3 level 2",
+  "electric guitar": "rack 2 bay 1 level 3",
+  "office equipment": "for 1.1a"
+};
+
+function searchItem() {
+  const input = document.getElementById("search-input").value.toLowerCase();
+  const resultBox = document.getElementById("search-result");
+  if (itemLocations[input]) {
+    resultBox.innerText = `location: ${itemLocations[input]}`;
+  } else {
+    resultBox.innerText = "item not found.";
+  }
 }
 </script>
 
@@ -879,25 +960,28 @@ function highlightArea(coords) {
     "2025-09-02 08:21:07 - M1 Bay 2 Level 2 : New item added to location map: Bluetooth Speaker"
   ];
 
-
 let index = 0;
 
 function showUpdate() {
-  if (index < updates.length) {
-    const popup = document.getElementById("popup");
-    const message = document.querySelector(".popup-message");
+  const popup = document.getElementById("popup");
+  const message = document.querySelector(".popup-message");
 
-    message.innerText = updates[index];
-    popup.style.display = "block";
-    popup.style.animation = "fadeIn 0.5s ease-in-out";
+  message.innerText = updates[index];
+  popup.style.display = "block";
+  popup.style.animation = "fadeIn 0.5s ease-in-out";
 
-    setTimeout(() => {
-      popup.style.display = "none";
-    }, 4000);
+  setTimeout(() => {
+    popup.style.display = "none";
+  }, 4000);
 
-    index++;
-    setTimeout(showUpdate, 5000);
+  index++;
+
+  // loop back to start when reaching the end
+  if (index >= updates.length) {
+    index = 0;
   }
+
+  setTimeout(showUpdate, 5000);
 }
 
 function closePopup() {
@@ -905,6 +989,32 @@ function closePopup() {
   popup.style.display = "none";
 }
 
-window.onload = showUpdate;
+let nonEmptyIndex = 0;
+
+function showNonEmptyUpdate() {
+  const popup = document.getElementById("popup");
+  const message = document.querySelector(".popup-message");
+
+  message.innerText = nonEmptyMessages[nonEmptyIndex];
+  popup.style.display = "block";
+
+  setTimeout(() => {
+    popup.style.display = "none";
+  }, 4000);
+
+  nonEmptyIndex++;
+  if (nonEmptyIndex >= nonEmptyMessages.length) {
+    nonEmptyIndex = 0;
+  }
+
+  setTimeout(showNonEmptyUpdate, 5000);
+}
+
+window.onload = function() {
+  showUpdate();
+  showCapacityUpdate();
+  updateNonEmptyBox();
+  showNonEmptyUpdate();
+};
 
 </script>
