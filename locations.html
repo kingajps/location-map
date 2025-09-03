@@ -1,3 +1,48 @@
+<style>
+    #disclaimer-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.9);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    #disclaimer-box {
+      background: #1e1e1e;
+      padding: 40px;
+      border-radius: 12px;
+      max-width: 700px;
+      width: 90%;
+      text-align: center;
+    }
+
+    #disclaimer-box button {
+      padding: 12px 24px;
+      font-size: 16px;
+      background: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="disclaimer-screen">
+    <div id="disclaimer-box">
+      <h2>disclaimer</h2>
+      <p>this website is a draft. it is meant for demo purposes only. all data shown on the demo is fake. the website will be improved along the way. this demo was made with a focus solely on displaying some of the main systems that will be in the website.</p>
+      <button onclick="closeDisclaimer()">continue</button>
+    </div>
+  </div>
+
 <h1>Warehouse Map</h1>
 
 <div id="map-container">
@@ -101,6 +146,12 @@
     <button class="popup-close" onclick="closeRelocationPopup()">×</button>
   </div>
 </div>
+
+<script>
+    function closeDisclaimer() {
+      document.getElementById("disclaimer-screen").style.display = "none";
+    }
+  </script>
 
 <style>
   body {
