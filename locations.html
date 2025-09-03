@@ -94,6 +94,14 @@
     <button class="popup-close" onclick="closePopup()">×</button>
   </div>
 
+<div id="relocation-popup" style="display: none;">
+  <div class="popup-content">
+    <span class="popup-icon">📦</span>
+    <span class="popup-message" id="relocation-message"></span>
+    <button class="popup-close" onclick="closeRelocationPopup()">×</button>
+  </div>
+</div>
+
 <style>
   body {
   font-family: 'inter', sans-serif;
@@ -849,26 +857,28 @@ const capacity = {
   'unit30': ['capacity status:', '- 75% left']
 };
 
-function updateNonEmptyBox() {
-  const container = document.getElementById("nonempty-content");
-  const nonEmpty = [];
+const nonEmptyMessages = [];
+const allowed = ["empty", "25% left", "50% left", "75% left"];
 
-  for (const location in capacity) {
-    const entries = capacity[location];
-    for (let i = 1; i < entries.length; i++) {
-      const entry = entries[i].toLowerCase();
-      if (
-        entry.includes("empty") ||
-        entry.includes("25% left") ||
-        entry.includes("50% left") ||
-        entry.includes("75% left")
-      ) {
-        nonEmpty.push(`${location} ${entries[i]}`);
-      }
+for (const location in capacity) {
+  const entries = capacity[location];
+  for (let i = 1; i < entries.length; i++) {
+    const entry = entries[i].toLowerCase();
+    if (allowed.some(cap => entry.includes(cap))) {
+      nonEmptyMessages.push(`${location}: ${entries[i]}`);
     }
   }
+}
 
-  container.innerHTML = nonEmpty.map(item => `<p>${item}</p>`).join('');
+function showNonEmptyUpdate() {
+  const container = document.getElementById("nonempty-content");
+  container.innerHTML = ""; // clear previous content
+
+  nonEmptyMessages.forEach(msg => {
+    const line = document.createElement("div");
+    line.textContent = msg;
+    container.appendChild(line);
+  });
 }
 
   const inventory = messages[label];
@@ -891,20 +901,6 @@ function updateNonEmptyBox() {
   } else {
     container.innerHTML = '<p>no information available for this area.</p>';
   }
-
-function updateNonEmptyBox() {
-  const container = document.getElementById("nonempty-content");
-  const nonEmpty = [];
-  for (const location in capacity) {
-    const entries = capacity[location];
-    for (let i = 1; i < entries.length; i++) {
-      if (!entries[i].includes("empty")) {
-        nonEmpty.push(`${location} ${entries[i]}`);
-      }
-    }
-  }
-  container.innerHTML = nonEmpty.map(item => `<p>${item}</p>`).join('');
-}
 
 function highlightArea(coords) {
   const box = document.getElementById('highlight-box');
@@ -989,32 +985,54 @@ function closePopup() {
   popup.style.display = "none";
 }
 
-let nonEmptyIndex = 0;
+const movedUpdates = [
+  "2025-09-03 13:26:44 : Item: iPad Pro - has been moved from: M8 Bay 2 Level 2 to: M4 Bay 4 Level 1",
+  "2025-09-03 12:15:22 : Item: Camping Stove - has been moved from: Zone A to: Rack2a Bay 2 Level 1",
+  "2025-09-03 10:48:09 : Item: Industrial Drill - has been moved from: FoR21a to: M3 Bay 1 Level 2",
+  "2025-09-02 17:36:55 : Item: Garden Hose - has been moved from: FoR14a to: M9 Bay 2 Level 1",
+  "2025-09-02 16:10:33 : Item: Office Chair - has been moved from: FoR33a to: M6 Bay 1 Level 1",
+  "2025-09-02 14:22:18 : Item: Printer Toner - has been moved from: FoR24a to: Rack1 Bay 1 Level 2",
+  "2025-09-01 11:58:47 : Item: Welding Mask - has been moved from: FoR36a to: Rack3a Bay 2 Level 2",
+  "2025-08-31 08:27:11 : Item: Extension Cable - has been moved from: FoR17a to: M11 Bay 1 Level 2",
+  "2025-08-30 13:49:03 : Item: Folding Table - has been moved from: FoR31a to: M5 Bay 2 Level 1",
+  "2025-08-29 10:05:29 : Item: LED Work Light - has been moved from: FoR35a to: Rack2 Bay 2 Level 1"
+];
 
-function showNonEmptyUpdate() {
-  const popup = document.getElementById("popup");
-  const message = document.querySelector(".popup-message");
+let movedIndex = 0;
 
-  message.innerText = nonEmptyMessages[nonEmptyIndex];
+function showMovedUpdate() {
+  const popup = document.getElementById("relocation-popup");
+  const message = document.getElementById("relocation-message");
+
+  message.innerText = movedUpdates[movedIndex];
   popup.style.display = "block";
+  popup.style.animation = "fadeIn 0.5s ease-in-out";
 
   setTimeout(() => {
     popup.style.display = "none";
   }, 4000);
 
-  nonEmptyIndex++;
-  if (nonEmptyIndex >= nonEmptyMessages.length) {
-    nonEmptyIndex = 0;
+  movedIndex++;
+
+  // loop back to start when reaching the end
+  if (movedIndex >= movedUpdates.length) {
+    movedIndex = 0;
   }
 
-  setTimeout(showNonEmptyUpdate, 5000);
+  setTimeout(showMovedUpdate, 15000);
+}
+
+function closeRelocationPopup() {
+  const popup = document.getElementById("relocation-popup");
+  popup.style.display = "none";
 }
 
 window.onload = function() {
   showUpdate();
-  showCapacityUpdate();
-  updateNonEmptyBox();
   showNonEmptyUpdate();
+  showMovedUpdate();
 };
+
+document.addEventListener("DOMContentLoaded", showMovedUpdate);
 
 </script>
